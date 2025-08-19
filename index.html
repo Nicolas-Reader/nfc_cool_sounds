@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Звук NFC</title>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #111;
+  color: white;
+  font-family: sans-serif;
+}
+.full-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  font-size: 28px;
+  background: #4CAF50;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.full-btn:active {
+  background: #45a049;
+}
+h1 {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  color: #bbb;
+}
+</style>
+</head>
+<body>
+
+<h1>🔊 Воспроизведение звука...</h1>
+<audio id="myAudio">
+  <source src="sound.mp3" type="audio/mpeg">
+</audio>
+<button id="playBtn" class="full-btn" style="display:none;">▶ Нажми для звука</button>
+
+<script>
+const audio = document.getElementById("myAudio");
+const btn = document.getElementById("playBtn");
+
+// Пытаемся запустить звук сразу
+audio.play().then(() => {
+  console.log("Автовоспроизведение удалось!");
+}).catch(() => {
+  // Если блокируется — показываем большую кнопку
+  btn.style.display = "flex";
+});
+
+btn.addEventListener("click", () => {
+  audio.play();
+  btn.style.display = "none";
+});
+</script>
+
+</body>
+</html>
